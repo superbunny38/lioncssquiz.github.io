@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>DongBang</title>
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Combo|Crafty+Girls|Emilys+Candy|Kavivanar|Parisienne|Rancho|Reenie+Beanie|Rouge+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        h1{
+            color: palevioletred;
+            text-align: center;
+            font-family: 'Parisenne', cursive;
+            font-weight: 900;
+            font-size: 50px;
+            background-color: lightpink;
+
+        }
+        h2{
+            color:teal;
+            text-align: center;
+            font-family: 'Reenie Beanie', cursive;
+        }
+        #free{
+            color: mediumpurple;
+            text-align: center;
+            font-family: 'Bungee', cursive;
+        }
+        body{
+            text-align: center;
+        }
+        #message{
+           color: rgb(248, 198, 71);
+           font-family:  'Rancho', cursive;
+           font-size: 20px;
+        }
+        #writer{
+            color: rgb(238, 197, 210);
+            font-family:  'Rancho', cursive;
+            font-size: 20px;
+        }
+        #writtendate{
+            color: violet;
+            font-family:  'Rancho', cursive;
+            font-size: 30px;
+        }
+        .table{
+            background-color: rgb(254, 255, 214);
+        }
+        #MESSAGE{
+            font-family: 'Emilys Candy', cursive;
+            font-size: 20px;
+            color:mediumseagreen
+        }
+        #WRITER{
+            font-family: 'Emilys Candy', cursive;
+            font-size: 20px;
+            color:mediumvioletred;
+        }
+        #DATE{
+            font-family: 'Emilys Candy', cursive;
+            font-size: 20px;
+            color:navy;
+        }
+        #history{
+            font-family: 'Crafty Girls', cursive;
+            font-weight: bold;
+            font-size: 25px;
+            color:lightcoral;
+            background-color: lavenderblush;
+        }
+        #words{
+            font-family: 'Combo', cursive;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: rgb(230, 255, 206);
+        }
+        #contwr{
+            font-family: 'Kavivanar', cursive;
+            background-color: rgb(255, 233, 254);
+        }
+        #contdt{
+            font-family: 'Kavivanar', cursive;
+            background-color: rgb(238, 217, 255);
+        }
+    </style>
+</head>
+<body>
+    <h1>♥DONGBANG♥</h1>
+    <h2>-------words from visitors in dongbang-------</h2>
+    <div id="free">
+        feel free to type some words below!<br>
+    </div>
+    <form action="{% url 'submit' %}">
+        {% csrf_token %}
+        <span class="badge badge-secondary"><div id="message">MESSAGE : <br><textarea cols="80" rows="5" name="words"></textarea></div></span>
+        <br>
+        <span class="badge badge-danger"><div id="writer"> WRITER : <textarea cols="10" rows="1" name="writer"></textarea></div></span>
+        <br>
+        <div id="writtendate"><span class="badge badge-info">WRITTEN DATE:</span> 
+            <input type="date" name="date">
+            <input type="submit" value = "SUBMIT" style="font-style: 'Rouge Script', cursive" type="button" class="btn btn-primary"></div>
+    </form>
+    <br><br><br><br>
+    <center>
+        <div id="history">---HISTORY---</div>
+    <table class="table">
+        <th id="MESSAGE">MESSAGE</th>
+        <th id="WRITER">WRITER</th>
+        <th id="DATE">DATE</th>
+        {% for m in messages.all %}
+        <tr>
+            <td id="words">{{m.words}}</td>
+            <td id="contwr">{{m.writer}}</td>
+            <td id="contdt">{{m.date}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </center>
+</body> 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
